@@ -1,0 +1,18 @@
+
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
+<title>おにぎり屋 出店マップ</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>html,body,#map{{height:100%;margin:0;}}</style></head>
+<body><div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="locations.js"></script>
+<script>
+var map=L.map('map').setView([35.8,139.8],9);
+L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:18}}).addTo(map);
+var icon=L.icon({{iconUrl:'icon.png',iconSize:[48,48],iconAnchor:[24,24],popupAnchor:[0,-24]}});
+locations.forEach(function(p){{
+  var html='<strong>'+p.place+'</strong><br>'+p.date+(p.time?' '+p.time:'')+
+           '<br><a href="'+p.gmap+'" target="_blank">Googleマップで開く</a>';
+  L.marker([p.lat,p.lon],{{icon:icon}}).bindPopup(html).addTo(map);
+}});
+</script></body></html>

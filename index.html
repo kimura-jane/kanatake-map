@@ -1,18 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>おにぎり屋 出店マップ</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-sA+o1cawbkXdyCcTR4dLzf7nQKus1Y/Rfu+xwEDEokk="
+        crossorigin="">
+  <style>html,body,#map{height:100%;margin:0;}</style>
+</head>
+<body>
+<div id="map"></div>
 
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
-<title>おにぎり屋 出店マップ</title><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<style>html,body,#map{{height:100%;margin:0;}}</style></head>
-<body><div id="map"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-o9N1jJNHbCHh7vDl1XX2k1j2hjwSugWI9C5IP3LXw8A="
+        crossorigin=""></script>
 <script src="locations.js"></script>
 <script>
-var map=L.map('map').setView([35.8,139.8],9);
-L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:18}}).addTo(map);
-var icon=L.icon({{iconUrl:'icon.png',iconSize:[48,48],iconAnchor:[24,24],popupAnchor:[0,-24]}});
-locations.forEach(function(p){{
-  var html='<strong>'+p.place+'</strong><br>'+p.date+(p.time?' '+p.time:'')+
-           '<br><a href="'+p.gmap+'" target="_blank">Googleマップで開く</a>';
-  L.marker([p.lat,p.lon],{{icon:icon}}).bindPopup(html).addTo(map);
-}});
-</script></body></html>
+  /* 初期ビュー：東京・埼玉・千葉・茨城を俯瞰 */
+  var map = L.map('map').setView([35.8, 139.8], 9);
+
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'}
+  ).addTo(map);
+
+  var icon = L.icon({
+    iconUrl: 'icon.png',
+    iconSize:  [48, 48],
+    iconAnchor:[24, 24],
+    popupAnchor:[0, -24]
+  });
+
+  locations.forEach(function(pt){
+    var html = '<strong>'+pt.place+'</strong><br>'
+             + pt.date + (pt.time ? ' ' + pt.time : '') + '<br>'
+             + '<a href="'+pt.gmap+'" target="_blank" rel="noopener">Googleマップで開く</a>';
+    L.marker([pt.lat, pt.lon], {icon: icon})
+      .bindPopup(html).addTo(map);
+  });
+</script>
+</body>
+</html>

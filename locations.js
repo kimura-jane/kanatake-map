@@ -10,3 +10,7 @@ const locations = [
   {date:'2025-07-29',place:'川口さくら病院',time:'11:00-14:00',lat:35.8525957,lon:139.7246536,gmap:'https://www.google.com/maps/search/?api=1&query=35.8525957,139.7246536'},
   {date:'2025-07-30',place:'蕨市役所',time:'',lat:35.82558,lon:139.6795603,gmap:'https://www.google.com/maps/search/?api=1&query=35.82558,139.6795603'}
 ];
+
+- {date:'2025-07-23', place:'蕨市役所', time:'', lat:35.82558, lon:139.6795603, gmap:'https://www.google.com/maps/search/?api=1&query=35.82558,139.6795603'},
+- {date:'2025-07-30', place:'蕨市役所', time:'', lat:35.82558, lon:139.6795603, gmap:'https://www.google.com/maps/search/?api=1&query=35.82558,139.6795603'},
++ {date:'2025-07-23<br>2025-07-30', place:'蕨市役所', time:'', lat:35.82558, lon:139.6795603, gmap:'https://www.google.com/maps/search/?api=1&query=35.82558,139.6795603'},
